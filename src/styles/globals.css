@@ -19,8 +19,60 @@
  font-size: 18px;
  font-weight: 600;
  cursor: pointer;
+ padding: 0 18px;
+}
+
+.navbar__list {
+ padding: 0 18px;
+ display: flex;
+ gap: 12px;
+ align-items: center;
 }
 
 .navbar__button {
  display: none;
+}
+
+.navbar__list--item:hover {
+ color: darkgray;
+}
+
+.layout {
+ padding-top: 52px;
+}
+
+@media only screen and (max-width: 600px) {
+ .navbar__list {
+  display: none;
+ }
+
+ .navbar--mobile {
+  position: fixed;
+  width: 100%;
+  top: 52px;
+  background: darkblue;
+  color: white;
+  height: 100vh;
+ }
+
+ .navbar__button {
+  display: block;
+  padding: 0 18px;
+ }
+
+ .navbar__list--item--mobile {
+  cursor: pointer;
+ }
+
+ .navbar__list--item--mobile:hover {
+  color: darkgray;
+ }
+
+ .navbar__list--mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: start;
+  padding: 24px 18px;
+ }
 }
