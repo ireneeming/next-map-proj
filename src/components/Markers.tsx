@@ -2,18 +2,18 @@ import { useEffect, Dispatch, SetStateAction, useCallback } from "react";
 
 interface MarkersProps {
  map: any;
- storeData: any[];
+ stores: any[];
  setCurrentStore: Dispatch<SetStateAction<any>>;
 }
 
 export default function Markers({
  map,
- storeData,
+ stores,
  setCurrentStore,
 }: MarkersProps) {
  const loadKakaoMarkers = useCallback(() => {
   if (map) {
-   storeData.map((store) => {
+   stores.map((store) => {
     // 마커가 표시될 위치입니다
 
     const imageSrc = store?.bizcnd_code_nm
@@ -72,7 +72,7 @@ export default function Markers({
     });
    });
   }
- }, [map, setCurrentStore, storeData]);
+ }, [map, setCurrentStore, stores]);
 
  useEffect(() => {
   loadKakaoMarkers();
