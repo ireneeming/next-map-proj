@@ -55,3 +55,8 @@ If you're using Zero-Installs:
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+
+# prisma build files 
+prisma/*
+!prisma/schema.prisma

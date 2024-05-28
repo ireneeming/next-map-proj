@@ -1,34 +1,23 @@
 {
-  "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "Node16",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "forceConsistentCasingInFileNames": true
+ "compilerOptions": {
+  "lib": ["dom", "dom.iterable", "esnext"],
+  "allowJs": true,
+  "skipLibCheck": true,
+  "strict": true,
+  "noEmit": true,
+  "esModuleInterop": true,
+  "module": "esnext",
+  "moduleResolution": "Node16",
+  "resolveJsonModule": true,
+  "isolatedModules": true,
+  "jsx": "preserve",
+  "incremental": true,
+  "paths": {
+   "@prisma": ["./prisma/index"],
+   "@/*": ["./src/*"]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "forceConsistentCasingInFileNames": true
+ },
+ "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+ "exclude": ["node_modules"]
 }
