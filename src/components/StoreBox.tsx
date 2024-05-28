@@ -10,7 +10,7 @@ import { HiOutlineMapPin } from "react-icons/hi2";
 import { StoreType } from "@/interface/index";
 
 interface StoreBoxProps {
- store: StoreType;
+ store: StoreType | null;
  setStore: Dispatch<SetStateAction<any>>;
 }
 
@@ -24,7 +24,7 @@ export default function StoreBox({ store, setStore }: StoreBoxProps) {
        <div className="flex gap-4 items-center">
         <Image
          src={
-          store?.category
+          store.category !== "null"
            ? `/images/markers/${store?.category}.png`
            : "/images/markers/default.png"
          }
