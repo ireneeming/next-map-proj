@@ -1,9 +1,9 @@
-import { StoreType } from "@/interface/index";
+import { StoreApiResponse } from "@/interface/index";
 import { useEffect, Dispatch, SetStateAction, useCallback } from "react";
 
 interface MarkersProps {
  map: any;
- stores: StoreType[];
+ stores: StoreApiResponse;
  setCurrentStore: Dispatch<SetStateAction<any>>;
 }
 
@@ -14,13 +14,12 @@ export default function Markers({
 }: MarkersProps) {
  const loadKakaoMarkers = useCallback(() => {
   if (map) {
-   stores.map((store) => {
+   stores.data.map((store) => {
     // 마커가 표시될 위치입니다
 
-    const imageSrc =
-      store.category !== "null"
-       ? `/images/markers/${store?.category}.png`
-       : "/images/markers/default.png",
+    const imageSrc = store.category
+      ? `/images/markers/${store?.category}.png`
+      : "/images/markers/default.png",
      imageSize = new window.kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
      imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
