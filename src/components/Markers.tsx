@@ -1,9 +1,9 @@
-import { StoreApiResponse } from "@/interface/index";
+import { StoreApiResponse, StoreType } from "@/interface/index";
 import { useEffect, Dispatch, SetStateAction, useCallback } from "react";
 
 interface MarkersProps {
  map: any;
- stores: StoreApiResponse;
+ stores: StoreType[];
  setCurrentStore: Dispatch<SetStateAction<any>>;
 }
 
@@ -14,7 +14,7 @@ export default function Markers({
 }: MarkersProps) {
  const loadKakaoMarkers = useCallback(() => {
   if (map) {
-   stores.data.map((store) => {
+   stores.map((store) => {
     // 마커가 표시될 위치입니다
 
     const imageSrc = store.category
