@@ -1,3 +1,21 @@
+
+## Getting Started
+
+### create the project:
+
+```bash
+yarn create next-app [app-name]
+
+```
+
+### run project
+
+```bash
+yarn dev
+```
+
+### [vercel 배포 사이트 구경해보기] (https://next-map-proj.vercel.app/)
+
 ## 험난한 Yarn berry Next.js 프로젝트
 
 1. [프로젝트 git repo 푸쉬 안됨 이슈](https://velog.io/@ireneeming/Next.js-Yarn-berry-git-안올라감-이슈)
