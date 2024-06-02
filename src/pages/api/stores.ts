@@ -4,7 +4,7 @@ import { PrismaClient } from "../../../prisma";
 
 export default async function handler(
  req: NextApiRequest,
- res: NextApiResponse<StoreApiResponse | StoreType[]>
+ res: NextApiResponse<StoreApiResponse | StoreType[] | StoreType>
 ) {
  const { page = "" }: { page?: string } = req.query; // request에서 page 값 가져오기 기본값=1
 
@@ -28,10 +28,15 @@ export default async function handler(
    totalPage: Math.ceil(count / 10), // 총 레코드 갯수 /10으로 총 몇페이지 나왔는지 계산
   });
  } else {
+  const { id }: { id?: string } = req.query;
+
   const stores = await prisma.store.findMany({
    orderBy: { id: "asc" },
+   where: {
+    id: id ? parseInt(id) : {},
+   },
   });
 
-  return res.status(200).json(stores);
+  return res.status(200).json(id ? stores[0] : stores);
  }
 }
