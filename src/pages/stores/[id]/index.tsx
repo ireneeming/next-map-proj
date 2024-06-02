@@ -4,14 +4,11 @@ import { StoreType } from "@/interface";
 import axios from "axios";
 import Loader from "@/components/Loader";
 import Map from "@/components/Map";
-import { useState } from "react";
 import Marker from "@/components/Marker";
 
 export default function StorePage() {
  const router = useRouter();
  const { id } = router.query;
-
- const [map, setMap] = useState();
 
  const fetchStore = async () => {
   const { data } = await axios(`/api/stores?id=${id}`);
@@ -92,8 +89,8 @@ export default function StorePage() {
    </div>
    {isSuccess && (
     <div className="overflow-hidden w-full mb-20 max-w-5xl mx-auto max-h-[600px]">
-     <Map setMap={setMap} lat={store?.lat} lng={store?.lng} zoom={1} />
-     <Marker map={map} store={store} />
+     <Map lat={store?.lat} lng={store?.lng} zoom={1} />
+     <Marker store={store} />
     </div>
    )}
   </>
