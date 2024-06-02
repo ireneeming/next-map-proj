@@ -1,12 +1,44 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { StoreApiResponse, StoreType } from "@/interface";
 import prisma from "@/db";
+import axios from "axios";
 
 export default async function handler(
  req: NextApiRequest,
  res: NextApiResponse<StoreApiResponse | StoreType[] | StoreType>
 ) {
  const { page = "" }: { page?: string } = req.query; // request에서 page 값 가져오기 기본값=1
+
+ //  if (req.method === "POST") {
+ //   // 데이터 생성 처리
+ //   const data = req.body;
+ //   const result = await prisma.store.create({
+ //    data: { ...data },
+ //   });
+
+ //   return res.status(200).json(result);
+ //  }
+
+ if (req.method === "POST") {
+  // 데이터 생성을 처리한다
+  const formData = req.body;
+  const headers = {
+   Authorization: `KakaoAK ${process.env.KAKAO_CLIENT_ID}`,
+  };
+
+  const { data } = await axios.get(
+   `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeURI(
+    formData.address
+   )}`,
+   { headers }
+  );
+
+  const result = await prisma.store.create({
+   data: { ...formData, lat: data.documents[0].y, lng: data.documents[0].x },
+  });
+
+  return res.status(200).json(result);
+ }
 
  if (page) {
   const count = await prisma.store.count(); //prisma에서 호출된 데이터가 몇개인지 count
