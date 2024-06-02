@@ -1,14 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { StoreApiResponse, StoreType } from "@/interface";
-import { PrismaClient } from "../../../prisma";
+import prisma from "@/db";
 
 export default async function handler(
  req: NextApiRequest,
  res: NextApiResponse<StoreApiResponse | StoreType[] | StoreType>
 ) {
  const { page = "" }: { page?: string } = req.query; // request에서 page 값 가져오기 기본값=1
-
- const prisma = new PrismaClient();
 
  if (page) {
   const count = await prisma.store.count(); //prisma에서 호출된 데이터가 몇개인지 count
